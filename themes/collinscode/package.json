@@ -1,0 +1,38 @@
+{
+  "name": "collinscode_wp",
+  "version": "1.0.0",
+  "description": "A WordPress Theme built and maintained by Collin Smith",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm i gulp@3.9 -g && npm i --save-dev gulp@3.9 gulp-sass gulp-clean-css gulp-autoprefixer browser-sync gulp-eslint gulp-concat gulp-uglify gulp-babel @babel/core @babel/preset-env gulp-rename gulp-imagemin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/cmdevelops/collinscode_wp.git"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "custom",
+    "development"
+  ],
+  "author": "Collin Smith",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/cmdevelops/collinscode#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "browser-sync": "^2.24.7",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^5.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.1"
+  }
+}

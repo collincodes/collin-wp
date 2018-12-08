@@ -1,0 +1,73 @@
+version: '3'
+services:
+
+  test:
+    #image: collin/wordpress:php7.2-apache
+    container_name: test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./themes:/var/www/html/wp-content/themes
+      - ./plugins:/var/www/html/wp-content/plugins
+      - ./uploads:/var/www/html/wp-content/uploads
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_PASSWORD: dev
+      WORDPRESS_DB_NAME: test
+    ports:
+      - 80:80
+      - 443:443
+      - 3000:3000
+      - 3001:3001
+    networks:
+      - docker_backend
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - docker_dev__mysql_data:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: dev
+    restart: always
+    networks:
+      - docker_backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: dev
+    restart: always
+    networks:
+      - docker_backend
+
+  backup:
+    image: jswetzen/mysql-backup
+    container_name: backup
+    depends_on:
+      - mysql
+    volumes:
+        - ./mysql-backup:/backup
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASS: dev
+      CRON_TIME: '0 * * * *'
+      MAX_BACKUPS: 10
+      INIT_BACKUP: 'true'
+    restart: always
+    networks:
+      - docker_backend
+
+networks:
+  docker_backend:
+volumes:
+  docker_dev__mysql_data:

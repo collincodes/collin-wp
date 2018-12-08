@@ -1,0 +1,28 @@
+@import 'variables'
+
+// classes and global styling
+.overlay
+  position: absolute
+  z-index: 2
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+
+.body-container
+  +flex(stretch, space-between)
+  flex-direction: column
+  min-height: 100vh
+
+// default styling
+html
+  font-size: 0.83vw
+  @media #{$hd}
+    font-size: 16px
+  body
+    font-family: $font1
+    a
+      color: $color1
+      &:hover, &:visited
+        text-decoration: none
+        color: $color1
