@@ -1,9 +1,9 @@
 version: '3'
-services:
 
-  test:
-    #image: collin/wordpress:php7.2-apache
-    container_name: test
+services:
+  # wordpress container
+  PROJECT_NAME:
+    container_name: PROJECT_NAME
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_PASSWORD: dev
-      WORDPRESS_DB_NAME: test
+      WORDPRESS_DB_NAME: PROJECT_NAME
     ports:
       - 80:80
       - 443:443
@@ -24,6 +24,7 @@ services:
     networks:
       - docker_backend
 
+  # mysql container
   mysql:
     container_name: mysql
     image: mysql:5.7
@@ -35,6 +36,7 @@ services:
     networks:
       - docker_backend
 
+  # phpmyadmin container
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -49,6 +51,7 @@ services:
     networks:
       - docker_backend
 
+  # database backups container
   backup:
     image: jswetzen/mysql-backup
     container_name: backup
@@ -61,7 +64,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASS: dev
       CRON_TIME: '0 * * * *'
-      MAX_BACKUPS: 10
+      MAX_BACKUPS: 5
       INIT_BACKUP: 'true'
     restart: always
     networks:

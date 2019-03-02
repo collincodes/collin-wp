@@ -1,7 +1,8 @@
 startup() {
-  rm -rf /var/www/html/wp-content/themes/twenty* &&
-  rm -rf /var/www/html/wp-content/plugins/hello.php &&
-  cd /var/www/html/wp-content/themes/$1 &&
+  rm -rf wp-content/themes/twenty* &&
+  rm -rf wp-content/plugins/hello.php wp-content/plugins/akismet &&
+  chmod -R 777 . &&
+  cd wp-content/themes/$1 &&
   npm run install &&
   gulp;
 }

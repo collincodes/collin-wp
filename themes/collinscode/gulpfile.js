@@ -22,15 +22,15 @@ var paths = {
 };
 
 // default task
-gulp.task('default', ['sass', 'scripts', 'lint', 'compile-css', 'compile-js'], function() {
-  gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.js, ['scripts', 'lint']);
+gulp.task('default', gulp.series(['sass', 'scripts', 'lint', 'compile-css', 'compile-js'], function() {
+  gulp.watch(paths.sass, gulp.parallel(['sass']));
+  gulp.watch(paths.js, gulp.parallel(['scripts', 'lint']));
   gulp.watch('./**/*.php').on('change', browserSync.reload);
   browserSync.init({
     proxy: serverURL,
     open: false,
   });
-});
+}));
 
 // sass task
 gulp.task('sass', function() {
