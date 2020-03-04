@@ -1,5 +1,5 @@
       <footer class="footer">
-        <section class="footer-inner">
+        <section class="footer--inner">
 
         </section>
 
