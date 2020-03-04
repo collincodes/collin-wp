@@ -16,7 +16,7 @@ const paths = {
   compiled: "./compiled",
   css: "./css/*.css",
   js: "./js/*.js",
-  sass: "./sass/**/*.sass",
+  scss: "./scss/**/*.scss",
   scripts: "./js/scripts.js",
   templates: "./**/*.php"
 };
@@ -24,7 +24,7 @@ const paths = {
 // sass task
 const sassTask = () => {
   return (
-    src("sass/**/main.sass")
+    src("scss/**/main.scss")
       // compress & minify
       .pipe(
         sass({
@@ -98,7 +98,7 @@ const watchAll = () => {
     proxy: serverURL,
     open: false
   });
-  watch(paths.sass, { events: "all" }, sassTask);
+  watch(paths.scss, { events: "all" }, sassTask);
   watch(paths.scripts, { events: "all" }, series(scriptsTask, lintTask));
   watch(paths.templates, { events: "change" }, reload);
 };

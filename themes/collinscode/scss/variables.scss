@@ -1,0 +1,35 @@
+// color palette
+$color1: #000;
+$color2: #fff;
+
+$dark: #1e1e1e;
+$light: #f1f1f1;
+
+// media queries made easy
+$small: "only screen and (max-width: 576px)";
+$medium: "only screen and (max-width: 768px)";
+$large: "only screen and (max-width: 1024px)";
+$xlarge: "only screen and (max-width: 1250px)";
+$hd: "only screen and (max-width: 1920px)";
+
+// fonts
+$font1: "Arial", sans-serif;
+$font2: "Arial", sans-serif;
+
+// defined mixins
+@mixin background($size, $position) {
+  background-size: $size;
+  background-position: $position;
+  background-repeat: no-repeat;
+}
+
+@mixin flex($align, $justify) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin gradient($direction, $start, $end) {
+  background: $start;
+  background: linear-gradient($direction, $start, $end);
+}
