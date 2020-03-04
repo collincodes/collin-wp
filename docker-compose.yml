@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   # wordpress container
@@ -31,7 +31,7 @@ services:
     volumes:
       - docker_dev__mysql_data:/var/lib/mysql
     environment:
-        MYSQL_ROOT_PASSWORD: dev
+      MYSQL_ROOT_PASSWORD: dev
     restart: always
     networks:
       - docker_backend
@@ -58,14 +58,14 @@ services:
     depends_on:
       - mysql
     volumes:
-        - ./mysql-backup:/backup
+      - ./mysql-backup:/backup
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASS: dev
-      CRON_TIME: '0 * * * *'
-      MAX_BACKUPS: 5
-      INIT_BACKUP: 'true'
+      CRON_TIME: "0 * * * *"
+      MAX_BACKUPS: 2
+      INIT_BACKUP: "true"
     restart: always
     networks:
       - docker_backend
