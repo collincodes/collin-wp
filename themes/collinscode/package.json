@@ -5,7 +5,7 @@
   "main": ".eslintrc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm i gulp@3.9 -g && npm i --save-dev gulp@3.9 gulp-sass gulp-clean-css gulp-autoprefixer browser-sync gulp-eslint gulp-concat gulp-uglify gulp-babel @babel/core @babel/preset-env gulp-rename"
+    "install": "npm i gulp -g && npm i --save-dev gulp gulp-sass gulp-clean-css gulp-autoprefixer browser-sync gulp-eslint gulp-concat gulp-uglify gulp-babel @babel/core @babel/preset-env gulp-rename"
   },
   "repository": {
     "type": "git",
