@@ -1,11 +1,10 @@
 <?php
 /*
-  Template Name: 404 Error Page
+  404 Error Page
 */
 get_header(); ?>
 
 <main id="page-not-found">
-  <?php get_template_part('/components/header/child-header'); ?>
 
   <section class="error-container" style="padding: 5rem 10vw; text-align: center;">
     <h2>Oops!</h2>

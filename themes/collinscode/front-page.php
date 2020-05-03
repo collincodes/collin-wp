@@ -1,17 +1,12 @@
 <?php
 /*
-  Template Name: Home Page
-  front-page.php
+  This serves as the default template for the home page
 */
 get_header(); ?>
 
 <main id="home">
 
-  <section class="hero">
-
-  </section>
-
-  <!-- Continue Sections -->
+  <?= the_content() ?>
 
 </main>
 

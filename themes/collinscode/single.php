@@ -1,13 +1,10 @@
 <?php
 /*
-  Template Name: Single Post
-  single.php (the Template for displaying all single posts)
+  Template for displaying any and all single posts
 */
 get_header(); ?>
 
 <main id="single-post">
-  <?php get_template_part('components/header/child-header'); ?>
-
   <div class="single-post-container">
     <?php if ( have_posts() ): ?>
       <?php while ( have_posts() ): the_post(); ?>

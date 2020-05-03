@@ -8,11 +8,12 @@
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>
+    <div id="headerPlaceholder"></div>
     <header>
       <div class="header">
         <div class="header--content">
           <a class="logo" href="<?= home_url() ?>">
-            <!-- <img src="" alt=""> -->
+            <img src="" alt="">
           </a>
         </div> <!-- Header Content & Logo -->
         <nav class="header--nav">
@@ -22,9 +23,7 @@
         <!-- Button trigger modal -->
         <div class="mobile-button">
           <div class="button-container">
-            <div class="dot1 dot"></div>
-            <div class="dot2 dot"></div>
-            <div class="dot3 dot"></div>
+
           </div>
         </div> <!-- Mobile Menu Button -->
       </div> <!-- Header Inner Container -->

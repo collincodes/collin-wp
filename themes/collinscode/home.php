@@ -1,13 +1,11 @@
 <?php
 /*
-  Template Name: Home
-  home.php (the Template for displaying all single posts)
+  Template for displaying all posts
+  This is the main blog template
 */
 get_header(); ?>
 
 <main id="blog-page">
-  <?php get_template_part('components/child-header'); ?>
-
   <div class="blog-container">
     <?php
       $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;

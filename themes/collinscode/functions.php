@@ -7,8 +7,22 @@ add_action('init', 'register_menu');
 
 // options pages register
 if( function_exists('acf_add_options_page') ) {
-  acf_add_options_page('General Options');
-  acf_add_options_page('Contact Links');
+  acf_add_options_page(array(
+    'page_title' 	=> 'General Options',
+		'menu_slug' 	=> 'general-options'
+  ));
+  acf_add_options_sub_page(array(
+    'page_title' => 'Header',
+    'parent_slug' => 'general-options'
+  ));
+  acf_add_options_sub_page(array(
+    'page_title' => 'Footer',
+    'parent_slug' => 'general-options'
+  ));
+  acf_add_options_sub_page(array(
+    'page_title' => 'Contact',
+    'parent_slug' => 'general-options'
+  ));
 }
 
 // enqueue javascript & css files
