@@ -6,7 +6,7 @@ get_header(); ?>
 
 <main id="home">
 
-  <?= the_content() ?>
+  <?= apply_filters('the_content', $post->post_content) ?>
 
 </main>
 

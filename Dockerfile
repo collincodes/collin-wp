@@ -11,6 +11,7 @@ RUN apt-get -y install curl software-properties-common
 RUN apt-get -y install gnupg
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
+RUN apt-get install -y vim
 WORKDIR /
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar

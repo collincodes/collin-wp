@@ -1,4 +1,4 @@
-sstartup() {
+startup() {
   cd /var/www/html &&
   rm -rf wp-content/themes/twenty* &&
   rm -rf wp-content/plugins/hello.php wp-content/plugins/akismet &&
