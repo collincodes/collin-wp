@@ -2,8 +2,8 @@ version: "3"
 
 services:
   # wordpress container
-  PROJECT_NAME:
-    container_name: PROJECT_NAME
+  location:
+    container_name: location
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,64 +15,11 @@ services:
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_PASSWORD: dev
-      WORDPRESS_DB_NAME: PROJECT_NAME
+      WORDPRESS_DB_NAME: location
     ports:
-      - 80:80
-      - 443:443
-      - 3000:3000
-      - 3001:3001
-    networks:
-      - docker_backend
-
-  # mysql container
-  mysql:
-    container_name: mysql
-    image: mysql:5.7
-    ports:
-      - 4306:3306
-    volumes:
-      - docker_dev__mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: dev
-    restart: always
-    networks:
-      - docker_backend
-
-  # phpmyadmin container
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    depends_on:
-      - mysql
-    ports:
-      - 8081:80
-    environment:
-      PMA_HOST: mysql
-      MYSQL_ROOT_PASSWORD: dev
-    restart: always
-    networks:
-      - docker_backend
-
-  # database backups container
-  backup:
-    image: jswetzen/mysql-backup
-    container_name: backup
-    depends_on:
-      - mysql
-    volumes:
-      - ./mysql-backup:/backup
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASS: dev
-      CRON_TIME: "0 * * * *"
-      MAX_BACKUPS: 2
-      INIT_BACKUP: "true"
-    restart: always
-    networks:
-      - docker_backend
+      - 80
 
 networks:
-  docker_backend:
-volumes:
-  docker_dev__mysql_data:
+  default:
+    external:
+      name: docker_wordpress

@@ -1,11 +1,11 @@
 {
   "name": "collinscode_wp",
-  "version": "1.0.0",
+  "version": "1.0",
   "description": "A WordPress Theme built and maintained by Collin Smith",
   "main": ".eslintrc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm i gulp -g && npm i --save-dev gulp gulp-sass gulp-clean-css gulp-autoprefixer browser-sync gulp-eslint gulp-concat gulp-uglify gulp-babel @babel/core @babel/preset-env gulp-rename"
+    "install": "npm i gulp -g && npm i --save-dev gulp gulp-inject-string gulp-clean gulp-sass gulp-clean-css gulp-autoprefixer browser-sync gulp-eslint gulp-concat gulp-uglify gulp-babel @babel/core @babel/preset-env gulp-rename"
   },
   "repository": {
     "type": "git",
@@ -21,20 +21,22 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/cmdevelops/collinscode#readme",
   "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "browser-sync": "^2.24.7",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "browser-sync": "^2.26.12",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^5.0.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-uglify": "^3.0.1"
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1"
+    "bootstrap": "^4.4.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-inject-string": "^1.1.2"
   }
 }

@@ -1,4 +1,4 @@
-FROM wordpress:php7.4-apache
+FROM wordpress:latest
 
 MAINTAINER Collin Smith <cmdeveloped@gmail.com>
 

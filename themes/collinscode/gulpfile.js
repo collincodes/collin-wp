@@ -9,6 +9,8 @@ const { series, parallel, src, dest, watch } = require("gulp");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
+const inject = require("gulp-inject-string");
+const clean = require("gulp-clean");
 
 // browsersync and paths
 const serverURL = "http://localhost";
@@ -16,15 +18,27 @@ const paths = {
   compiled: "./compiled",
   css: "./css/*.css",
   js: "./js/*.js",
-  scss: "./scss/**/*.scss",
-  scripts: "./js/scripts.js",
+  theme: {
+    styles: "./src/styles/theme/theme.scss",
+    scripts: "./src/scripts/theme/theme.js"
+  },
   templates: "./**/*.php"
 };
 
+const hash = Math.random()
+  .toString(36)
+  .substring(7);
+
+const cleanCompiled = () => {
+  return src(compiled, {
+    allowEmpty: true
+  }).pipe(clean());
+};
+
 // sass task
-const sassTask = () => {
+const themeStyleTask = () => {
   return (
-    src("scss/**/main.scss")
+    src(paths.theme.styles)
       // compress & minify
       .pipe(
         sass({
@@ -38,53 +52,69 @@ const sassTask = () => {
         })
       )
       // rename file
-      .pipe(rename("styles.min.css"))
+      .pipe(rename(`theme-${hash}.min.css`))
       .pipe(dest(paths.compiled))
       .pipe(browserSync.stream())
   );
 };
 
+// inject new file name into functions.php
+const injectCss = () => {
+  return src("functions.php")
+    .pipe(
+      inject.replace(/theme(\-.{0,6})?\.min\.css/g, `theme-${hash}.min.css`)
+    )
+    .pipe(dest("./"));
+};
+
 // scripts task
-const scriptsTask = () => {
-  return src(paths.scripts)
+const themeScriptTask = () => {
+  return src(paths.theme.scripts)
     .pipe(
       babel({
         presets: ["@babel/env"]
       })
     )
     .pipe(uglify())
-    .pipe(rename("scripts.min.js"))
+    .pipe(concat(`theme-${hash}.min.js`))
     .pipe(dest(paths.compiled));
 };
 
 // lint task
 const lintTask = () => {
-  return src([paths.scripts])
+  return src([paths.theme.scripts])
     .pipe(eslint())
     .pipe(eslint.format());
 };
 
+// inject new file name into functions.php
+const injectJs = () => {
+  return src("functions.php")
+    .pipe(inject.replace(/theme(\-.{0,6})?\.min\.js/g, `theme-${hash}.min.js`))
+    .pipe(dest("./"));
+};
+
 // minify and concat all extra css
-const compileCssTask = () => {
+const extraCssTask = () => {
   return src(paths.css)
     .pipe(
       cleanCSS({
         compatibility: "ie8"
       })
     )
-    .pipe(concat("extra-css.min.css"))
+    .pipe(concat("extra.min.css"))
     .pipe(dest(paths.compiled));
 };
 
 // minify and concat all extra js
-const compileJsTask = () => {
-  return src([paths.js, "!./js/scripts.js"])
+const extraJsTask = () => {
+  return src(paths.js)
     .pipe(
       uglify().on("error", function(e) {
         console.log(e);
       })
     )
-    .pipe(concat("extra-scripts.min.js"))
+    .pipe(concat("extra.min.js"))
     .pipe(dest(paths.compiled));
 };
 
@@ -98,17 +128,27 @@ const watchAll = () => {
     proxy: serverURL,
     open: false
   });
-  watch(paths.scss, { events: "all" }, sassTask);
-  watch(paths.scripts, { events: "all" }, series(scriptsTask, lintTask));
+  watch(paths.theme.styles, { events: "all" }, themeStyleTask);
+  watch(
+    paths.theme.scripts,
+    { events: "all" },
+    series(themeScriptTask, lintTask)
+  );
   watch(paths.templates, { events: "change" }, reload);
+  // watch("../../plugins/collins-blocks/styles/scss/**/*.scss", {
+  //   events: "change"
+  // });
 };
 
 const tasks = series(
-  sassTask,
-  scriptsTask,
+  cleanCompiled,
+  themeStyleTask,
+  themeScriptTask,
   lintTask,
-  compileCssTask,
-  compileJsTask
+  extraCssTask,
+  extraJsTask,
+  injectCss,
+  injectJs
 );
 
 exports.default = series(tasks, watchAll);
