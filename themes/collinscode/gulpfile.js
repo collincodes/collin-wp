@@ -1,3 +1,7 @@
+// globals
+const port = 32;
+const serverURL = `http://localhost:${port}`;
+
 // gulp dependencies
 const autoprefixer = require("gulp-autoprefixer");
 const babel = require("gulp-babel");
@@ -13,7 +17,6 @@ const inject = require("gulp-inject-string");
 const clean = require("gulp-clean");
 
 // browsersync and paths
-const serverURL = "http://localhost";
 const paths = {
   compiled: "./compiled",
   css: "./css/*.css",

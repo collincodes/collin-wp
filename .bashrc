@@ -7,3 +7,8 @@ startup() {
   find wp-content/ -type f -exec chmod 644 {} + &&
   cd wp-content/themes/$1;
 }
+
+replace() {
+  cd /var/www/html &&
+  wp search-replace $1 'http://localhost:$2' --allow-root;
+}

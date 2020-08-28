@@ -2,15 +2,16 @@ version: "3"
 
 services:
   # wordpress container
-  location:
-    container_name: location
+  %:
+    container_name: %
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./themes:/var/www/html/wp-content/themes
+      - ./mu-plugins:/var/www/html/wp-content/mu-plugins
       - ./plugins:/var/www/html/wp-content/plugins
+      - ./themes:/var/www/html/wp-content/themes
       - ./uploads:/var/www/html/wp-content/uploads
     environment:
       WORDPRESS_DB_HOST: mysql
