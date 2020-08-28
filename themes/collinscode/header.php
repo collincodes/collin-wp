@@ -17,7 +17,7 @@
           </a>
         </div> <!-- Header Content & Logo -->
         <nav class="header--nav">
-          <?php wp_nav_menu(array('menu' => 'Default Menu')); ?>
+          <?php wp_nav_menu( array('menu' => 'header-menu') ); ?>
         </nav> <!-- Header Navigation -->
 
         <!-- Button trigger modal -->

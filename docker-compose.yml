@@ -2,8 +2,8 @@ version: "3"
 
 services:
   # wordpress container
-  %:
-    container_name: %
+  collinscode:
+    container_name: collinscode
     build:
       context: .
       dockerfile: Dockerfile
