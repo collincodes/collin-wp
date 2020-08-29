@@ -2,8 +2,8 @@ version: "3"
 
 services:
   # wordpress container
-  collinscode:
-    container_name: collinscode
+  PROJ:
+    container_name: PROJ
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,7 +16,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_PASSWORD: dev
-      WORDPRESS_DB_NAME: location
+      WORDPRESS_DB_NAME: PROJ
     ports:
       - 80
 
