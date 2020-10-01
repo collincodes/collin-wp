@@ -2,8 +2,8 @@ version: "3"
 
 services:
   # wordpress container
-  PROJ:
-    container_name: PROJ
+  PROJ_NAME:
+    container_name: PROJ_NAME
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,14 +13,16 @@ services:
       - ./plugins:/var/www/html/wp-content/plugins
       - ./themes:/var/www/html/wp-content/themes
       - ./uploads:/var/www/html/wp-content/uploads
+    ports:
+      - 80:80
+      - 443:443
     environment:
       WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: dev
-      WORDPRESS_DB_NAME: PROJ
-    ports:
-      - 80
+      WORDPRESS_DB_NAME: PROJ_NAME
 
 networks:
   default:
     external:
-      name: docker_wordpress
+      name: docker_iostudio

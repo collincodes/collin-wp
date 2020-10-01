@@ -1,5 +1,3 @@
-@import "variables";
-
 // classes and global styling
 .overlay {
   position: absolute;
@@ -18,7 +16,7 @@
 
 // default styling
 html {
-  font-size: 0.83vw;
+  font-size: 18px;
 
   @media #{$hd} {
     font-size: 16px;
