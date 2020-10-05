@@ -1,3 +1,8 @@
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Global
 @import "global/mixins";
 @import "global/colors";
@@ -9,6 +14,3 @@
 @import "modules/forms";
 @import "modules/footer";
 @import "modules/header";
-
-// Bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";

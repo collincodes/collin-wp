@@ -1,8 +1,7 @@
 // gulp dependencies
-const autoprefixer = require("gulp-autoprefixer");
+const autoprefixer = require("autoprefixer");
 const babel = require("gulp-babel");
 const browserSync = require("browser-sync").create();
-const cleanCSS = require("gulp-clean-css");
 const concat = require("gulp-concat");
 const eslint = require("gulp-eslint");
 const { series, parallel, src, dest, watch } = require("gulp");
@@ -11,6 +10,9 @@ const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const inject = require("gulp-inject-string");
 const clean = require("gulp-clean");
+const postcss = require("gulp-postcss");
+const tailwindcss = require("tailwindcss");
+const cssnano = require("cssnano");
 
 const serverUrl = "http://localhost";
 
@@ -43,17 +45,14 @@ const cleanDist = () => {
 const styles = () => {
   return (
     src(paths.theme.styles)
-      // compress & minify
+      .pipe(sass().on("error", sass.logError))
+      // postcss functions
       .pipe(
-        sass({
-          outputStyle: "compressed",
-        }).on("error", sass.logError)
-      )
-      // add autoprefixers
-      .pipe(
-        autoprefixer({
-          overrideBrowserslist: ["last 2 versions"],
-        })
+        postcss([
+          autoprefixer({ overrideBrowserslist: ["last 2 versions"] }),
+          tailwindcss("./tailwind.config.js"),
+          cssnano(),
+        ])
       )
       // rename file
       .pipe(rename(`theme-${hash}.min.css`))
