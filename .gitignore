@@ -1,1 +1,8 @@
-plugins/*[!.zip]
+node_modules/
+
+plugins/akismet
+plugins/hello.php
+
+dist/*
+!dist/style.css
+!dist/index.php

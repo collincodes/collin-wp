@@ -1,0 +1,32 @@
+{
+  "name": "collinscode-wp",
+  "version": "1.0.0",
+  "description": "A custom WordPress theme developed by Collin Smith.",
+  "main": "index.php",
+  "scripts": {
+    "start": "mix watch",
+    "build": "mix --production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/collinscode/collin-wp.git"
+  },
+  "keywords": [
+    "wp"
+  ],
+  "author": "Collin Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/collinscode/collin-wp/issues"
+  },
+  "homepage": "https://github.com/collinscode/collin-wp#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "browser-sync": "^2.27.10",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "laravel-mix": "^6.0.49",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.3"
+  }
+}
